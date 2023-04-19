@@ -1,0 +1,79 @@
+<!-- 실습1 -->
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>실습1</title>
+</head>
+<body>
+    <h1>nufyn 회사 설문조사</h1>
+    <form>
+        <fieldset>
+            <ul>
+                <li>
+                    <label for="user-name">이름</label>
+                    <input type="text" id="user-name" required autofocus>
+                </li>
+                <li>
+                    <label for="addr">주소</label>
+                    <input type="text" id="addr">
+                </li>
+                <li>
+                    <label for="text">회사</label>
+                    <input type="text" id="text" required placeholder="nufyn 회사">
+                </li>
+                <li>
+                    <label>성별:
+                        <input
+                            type="radio"
+                            name="gift"
+                            value="yes"
+                        />남
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="gift"
+                            value="yes"
+                        />여
+                    </label>
+                </li>
+                <li>
+                    <label>전화번호 앞자리:
+                        <input
+                            type="radio"
+                            name="gift"
+                            value="yes"
+                        />기타
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="gift"
+                            value="yes"
+                        />010
+                    </label>
+                </li>
+                <li>
+                    <label> 좋아하는 애완 동물은?
+                        <input type="checkbox" value="f_3" />개
+                        <input type="checkbox" value="f_3" />고양이
+                        <input type="checkbox" value="f_3" />뱀
+                        <input type="checkbox" value="f_3" />개미
+                    </label>
+                </li>
+                <li>
+                    <label for="user_id">ID:</label>
+                    <input type="text" id="user_id" placeholder="아이디">
+                </li>
+                <li>
+                    <label for="password">PW:</label>
+                    <input type="text" id="password" placeholder="패스워드">
+                </li>
+        </fieldset>
+        <div>
+            <input type="submit" value="보내기">
+        </div>
+    </form>
+</body>
+</html>

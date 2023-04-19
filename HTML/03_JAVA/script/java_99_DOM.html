@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        width: 500px;
+        margin: 10px auto;
+        padding: 20px;
+    }
+    #info{
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <div id="container">
+        <h1>DOM을 공부합니다.</h1>
+        <a href="#" onclick="addcontents(); this.onclick='';"">더보기</a>
+        <div id="info"></div>
+    </div>
+    <script>
+        function addcontents(){
+            var newP = document.createElement("p");  // p tag 생성
+            var txtNode = document.createTextNode("DOM은 Document Object Model의 줄임말입니다");
+            newP.appendChild(txtNode);
+            document.getElementById("info").appendChild(newP);
+
+            var newImg = document.createElement("img")
+            var srcNode = document.createAttribute("src");
+            var altNode = document.createAttribute("alt");
+            srcNode.value = "../images/DOM/dom.jpg"
+            altNode.value = "돔트리 이미지"
+            newImg.setAttributeNode(srcNode);
+            newImg.setAttributeNode(altNode);
+            document.getElementById("info").appendChild(newImg);
+        }
+    </script>
+</body>
+</html>

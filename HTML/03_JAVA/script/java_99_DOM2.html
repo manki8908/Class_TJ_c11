@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/nodelist.css">
+</head>
+<body>
+    <h1> Web programing</h1>
+    <p>공부할 주제를 기록해보세요</p>
+    <form action="">
+        <input type="text" id="subject" autofocus>
+        <button onclick="newRegister(); return false">추가</button>
+    </form>
+    <ul id="itemList"></ul>
+    <script>
+        function newRegister(){
+            var newItem = document.createElement("li");
+            var subject = document.querySelector("#subject");
+            var newText = document.createTextNode(subject.value);
+            newItem.appendChild(newText);
+
+            var itemList = document.querySelector("#itemList");
+            // itemList.appendChild(newItem);
+            // 자식 노드중 첫번째 노드 앞에 추가
+            itemList.insertBefore(newItem, itemList.childNodes[0]);
+
+
+            // 줄바꿈
+            subject.value="";
+
+            var items = document.querySelectorAll('li');
+            for (let i=0; i<items.length; i++){
+                items[i].addEventListener("click", function(){
+                    if(this.parentNode){
+                        this.parentNode.removeChild(this);
+                    }
+                })
+            }
+        }
+
+        // function newRegister(){
+        //     var newItem = document.createElement("li");
+        //     var subject = document.querySelector("#subject");
+        //     var newText = document.createTextNode(subject.value);
+        //     newItem.appendChild(newText);
+
+        //     var itemList = document.querySelector("#itemList");
+        //     itemList.appendChild(newItem);
+
+        //     // 줄바꿈
+        //     subject.value="";
+        // }
+    </script>
+</body>
+</html>

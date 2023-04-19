@@ -1,0 +1,17 @@
+<!-- do while 조건문이 거짓이라도 한번은 실행후 탈출 -->
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let i = 0;
+        while (confirm('계속진행하시겠습니까?')) {
+            alert(`${i}번째 반복입니다`)
+            i++
+        }
+    </script>
+</body>
+</html>

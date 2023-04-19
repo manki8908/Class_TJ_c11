@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        td { text-align: center;}
+    </style>
+    <link rel="stylesheet" href="css\poster.css">
+</head>
+<body>
+    <h3>테이블 태그</h3>
+    <hr>
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+        </tr>
+        <tr>
+            <td>1교시</th> 
+            <td rowspan="2">국어</td>
+            <td>수학</td>
+            <td>영어</td>
+            <td colspan="2">체육</td>
+            <!-- <td>체육</td> -->
+        </tr>
+        <tr>
+            <td>2교시</th> 
+            <!-- <td>국어</td> -->
+            <td>음악</td>
+            <td>영어</td>
+            <td>사회</td>
+            <td>과학</td>
+        </tr>
+    </table>
+    <hr>
+    <table border="3">
+        <tr>
+            <td>이름</td>
+            <td>세종대</td>
+            <!-- &nbsp; 칸띄우기 -->
+            <td rowspan="3">사&nbsp;&nbsp;진</td>
+        </tr> 
+        <tr>
+            <td>전화번호</td>
+            <td>010-2345-6789</td>
+            <!-- <td>사진</td> -->
+        </tr> 
+        <tr>
+            <td>이메일</td>
+            <td>man@sejong.ac.kr</td>
+            <!-- <td>사진</td> -->
+        </tr> 
+        <tr>
+            <td>주소</td>
+            <td colspan="2">서울특별시 광진구</td>
+            <!-- <td></td> -->
+        </tr> 
+    </table>
+
+</body>
+</html>

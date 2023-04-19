@@ -1,0 +1,77 @@
+<!-- java_02 -->
+<!-- about:blank, ctl+shift+j -->
+
+<!-- 변수선언 -->
+var a=1
+let a=1;
+const a=1
+
+<!-- 문자길이 -->
+"안녕하세요".length
+
+<!-- 형변환 -->
+console.log(Number('101'), String(101), Number(true), Boolean(1))
+
+<!-- fstring -->
+console.log(`올해는 ${new Date().getFullYear()} 년 입니다.`);
+
+<!--  -->
+var x=1
+console.log(++x)
+console.log(x++)
+
+<!--  -->
+console.log(52+'37')
+
+<!--  -->
+console.log(1+true, true+'bool')
+
+<!--  -->
+console.log(52-'37', '37'-21.5, '37'*3)
+
+<!--  -->
+true && true
+true
+true || false
+true
+!true
+false
+!false
+
+typeof '문자'
+'string'
+typeof 234
+'number'
+typeof 10 === 'number'
+true
+
+<!--  -->
+let list = ''
+undefined
+list += '<ul>'
+'<ul>'
+list += '<li>hello<li>'
+'<ul><li>hello<li>'
+list += '<li>javascript</li>'
+'<ul><li>hello<li><li>javascript</li>'
+list += '</ul>'
+'<ul><li>hello<li><li>javascript</li></ul>'
+document.write(list)
+undefined
+
+<!--  -->
+let number = 10
+undefined
+alert(number++);
+undefined
+alert(number++);
+undefined
+
+<!--  -->
+const input = "안녕하세요"
+undefined
+alert(input)
+undefined
+const input2 = prompt(); alert(input2)
+undefined
+const input3 = confirm("진행하시겠습니까?"); alert(input3)

@@ -1,0 +1,47 @@
+<!-- 시맨틱태그 전 -->
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #header{
+            width: 800px;
+            margin: 0 auto;
+            background-color: red;
+        }
+        #wrap{
+            width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        #aside{
+            width: 200px;
+            /* 겹치는, 위에떠있는? */
+            float: left;
+            background-color: blue;
+        }
+        #content{
+            width: 600px;
+            float: left;
+            background-color: green;
+        }
+    </style>
+</head>
+<body style="margin-top: 40px; margin-left: 40px;">
+    <h3>ID 선택자</h3>
+    <hr>
+    <div id="header">
+        <h1>#Header태그</h1>
+    </div>
+    <div id="wrap">
+        <div id="aside">
+            <h1>#aside 태그</h1>
+        </div>
+        <div id="content">
+            <h1>#content 태그</h1>
+        </div>
+    </div>
+
+</body>
+</html>
