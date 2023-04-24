@@ -57,4 +57,3 @@ select book_name,publisher from book where book_name in('철학의 역사');
 select * from book where (book_name like '%썬') and (price >= 20000);
 -- 8. 출판사 이름이 '정론사' 혹은 '새미디어' 인 도서를 검색
 select * from book where publisher IN('정론사', '새미디어');
-
