@@ -229,8 +229,75 @@ select upper('a에서 z까지 !');
 
 -- 추출
 select substring('안녕하세요', 2, 3);
+-- 두번째 점 만나기 전까지
 select substring_index('안.녕.하.세.요', '.', 2);
+-- 뒤에서 세번째 점 만나기 전까지
 select substring_index('안.녕.하.세.요', '.', -3);
 select left('안녕하세요', 3);
 select right('안녕하세요', 3);
 
+-- 결합
+select concat('홍길동', '모험');
+select concat_ws(',', '홍길동', '모험');
+select '홍길동', '모험';
+select concat_ws(':', book_name, publisher) from bookstore.book;
+select book_name, ':', publisher from book;
+
+-- customer의 name과 phone을 ':'로 묶기
+select group_concat(user_name, ':', phone) As '전화'
+	from customer;
+select concat_ws(':', user_name, phone) As '전화'
+	from customer;
+
+-- 현재시각
+select Now(), sysdate(), current_timestamp();
+select curtime(), current_time();
+
+-- 날짜 시간 증감 함수
+select adddate('2021-9-30', interval 5 day);
+select adddate('2021-8-31', interval 1 month);
+select addtime('2021-01-01 23:59:59', '1:1:1');
+select addtime('09:00:00', '2:10:10');
+
+-- 날짜 /시간 사이 차이
+select datediff('2022-01-01', now());
+select timediff('23:23:59', '2:1:1');
+
+-- 날짜/시간 생성
+select makedate(2021,55);
+select date_format(makedate(2021,55), '%Y.%m.%d');
+select maketime(11,11,10);
+select quarter('2021-04-04'); -- 해당 분기 리턴
+
+-- -------------- 데이터 형식 변환 함수
+select avg(saleprice) as '평균 구매 가격' from bookstore.orders;
+-- 가격 평균 정수화
+select cast(avg(saleprice) as signed integer) as '평균 구매 가격' from bookstore.orders;
+
+-- 조인을 쓰기않고 테이블 결합
+select user_name, saleprice from customer C, orders O
+where C.custid = O.custid;
+
+-- 조인 활용
+select user_name, saleprice
+from customer C join orders O
+on C.custid = O.custid;
+
+-- 1. 도서 가격이 20000원 이상인 도서를 주문한 고객의 이름, 주문 도서 이름을 출력 where 조건만 사용
+select user_name, book_name, price from customer C, book B, orders O
+	where C.custid = O.custid and B.bookid = B.bookid and B.price > 20000;
+
+-- 2. 고객별로 주문도서의 총판매액, 고객 이름을 주문일자로 정렬(group by 집계후 order by로 정렬)
+select C.user_name, sum(O.saleprice) as "주문도서 총판매액", O.oderdate
+	from customer C
+	left join orders O
+    on C.custid = O.custid
+	group by C.user_name
+	order by O.oderdate;
+    
+-- 3. 외부조인, 도서를 구매하지 않은 고객을 포함해 고객 이름/전번과 주문도서의 판매가격을 출력
+-- 주문도서의 판매가격을 출력
+select user_name, O.saleprice
+from customer C
+left outer join orders O
+on C.custid = O.custid;
