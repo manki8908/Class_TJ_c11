@@ -207,6 +207,7 @@ ANALYZE TABLE member; -- 인덱스 적용
 SELECT mem_name, mem_number 
     FROM member 
     WHERE mem_number >= 7;
+    
 -- 검색되는 개수가 많아서 full table 스캔
 SELECT mem_name, mem_number 
     FROM member 
