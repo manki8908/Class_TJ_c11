@@ -138,7 +138,52 @@ where rental_rate between 1 and 6
 group by rating;
 
 
--- 15. 등급별 영화 수와 합계, 최고 , 최소 rental_rate를 조회하고 평균 렌탈비용으로 정렬
-select count(*) "영화수", sum(*) "합계", max(*) '최고', min(*) '최소' from film
-group by rating
+-- 15. film테이블에서 등급별 영화 수 합계, 최고 , 최소 rating, 
+-- 평균 렌탈비용으로 내림차순 정렬 rental_rate 
+select rating, count(*) "영화수", sum(rental_rate), max(rental_rate) '최고', min(rental_rate) '최소' from film
+group by rating, rental_rate
 order by avg(rental_rate) desc;
+
+-- 16. 등급별 영화 개수, 등급, 평균렌탈 rate를 조회하고 평균렌탈 rate를 내림차순으로 조회
+select count(*), rating, avg(rental_rate) as 평균 from film
+group by rating
+order by 평균 desc;
+
+-- 17. 분류가 family 인 film 테이블에서 서브쿼리를 이용해 조회
+-- film, film_category, category 테이블 활용
+
+-- join
+select film_id, title, release_year from film F
+inner join film_category FC on F.film_id = FC.film_id
+inner join category C on FC.category_id = C.category_id
+where C.name = 'Family';
+
+-- sub 쿼리
+select film_id, title, release_year
+from film
+where film_id in
+(select film_id from film_category where category_id in
+(select category_id from category where name = 'FAMILY'));
+
+
+-- 3. action 영화의 이름, 영화수, 합계(rental_rate),
+-- 		평균, 최소, 최고 집계
+-- select title, count(*), sum(rental_rate), avg(rental_rate), min(rental_rate), max(rental_rate)
+-- from film F
+select title from film F
+inner join film_category FC on F.film_id = FC.film_id
+inner join category C on FC.category_id = C.category_id
+where C.name = 'Action';
+
+-- 19. 가장 대여비가 높은 영화 분류
+-- category, film_category, inventory, payment, rental
+
+
+-- 가장 대여비가 높은 영화 분류 조회 2개(name, sum(ifnull)을 사용 payment 테이블에서
+-- amount 합계) name은 category_name으로 합계는 revenue로 별칭a
+-- category, film_ccategory, inventory, payment rental 테이블 join 후 name으로
+-- 그룹 분석 후 revenue로 내림차순
+
+
+
+-- 20. 위의 쿼리문 결과를 뷰로 생성 v_cat_revenue로 하고 뷰를 조회 하시오 
