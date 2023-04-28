@@ -7,6 +7,7 @@ class Question(models.Model):
     subject = models.CharField(max_length=200)
     content = models.TextField()
     create_date = models.DateTimeField()
+    modify_date = models.DateTimeField(null=True, blank=True)   # 어떤조건이든 값을 비워둘 수 있음
 
     def __str__(self):
         return self.subject
@@ -17,3 +18,5 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_date = models.DateTimeField()
+
+    modify_date = models.DateTimeField(null=True, blank=True)
