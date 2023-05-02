@@ -2,7 +2,16 @@
 {% load pybo_filter %}
 {% block content %}
 <div class="container my-3">
-    <div class="row my-3">
+    <!-- <div class="row my-3"> -->
+    <div class="row justify-content-betweenmy-3">
+        <!-- 정렬조건추가 -->
+        <div class="col-2">
+            <select class="form-control so">
+                <option value="recent" {%if so == 'recent'%} selected{% endif %}>최신순</option>
+                <option value="recommend"  {%if so == 'recommend'%} selected{% endif %}>추천순</option>
+                <option value="popular" {%if so == 'popular'%} selected{% endif %}>인기순</option>
+            </select>
+        </div>
         <div class="col-6">
             <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
         </div>
@@ -19,6 +28,7 @@
         <thead>
         <tr class="text-center table-dark">
             <th>번호</th>
+            <th>추천</th>
             <th style="width:50%">제목</th>
             <th>글쓴이</th>
             <th>작성일시</th>
@@ -31,6 +41,12 @@
             <td>
                 <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
+            </td>
+            <td>
+                <a href="javascript:void(0)" data-uri="{% url 'pybo:question_vote' question.id  %}"
+                class="recommend btn btn-sm btn-outline-secondary"> 추천
+                    <span class="badge rounded-pill bg-success">{{question.voter.count}}</span>
+                </a>
             </td>
             <td class="text-start">
                 <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
@@ -97,6 +113,7 @@
 <form id="searchForm" method="get" action="{% url 'index' %}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="so" name="so" value="{{ so }}">
 </form>
 {% endblock %}
 {% block script %}
@@ -114,5 +131,14 @@ btn_search.addEventListener('click', function() {
     document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
     document.getElementById('searchForm').submit();
 });
+const recommend_elements = document.getElementsByClassName("recommend");
+Array.from(recommend_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 추천하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+// 추천순,조회수
 </script>
 {% endblock %}
