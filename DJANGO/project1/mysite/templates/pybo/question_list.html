@@ -140,5 +140,11 @@ Array.from(recommend_elements).forEach(function(element) {
     });
 });
 // 추천순,조회수
+const so = document.getElementById("so");
+btn_search.addEventListener('click', function() {
+    document.getElementById('so').value = document.getElementById('search_so').value;
+    document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+    document.getElementById('searchForm').submit();
+});
 </script>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator  
 from django.shortcuts import render, get_object_or_404
 from ..models import Question
-from django.db.models import Q
+from django.db.models import Q, Count
 
 
 def index(request):
@@ -15,7 +15,7 @@ def index(request):
     elif so == 'popular':
         question_list = Question.objects.annotate(num_answer=Count('answer')).order_by('-num_voter', '-create_date')
     else:
-        question_list = Question.objects.annotate(num_voter=Count('answer')).order_by('-num_voter', '-create_date')
+        question_list = Question.objects.order_by('-create_date')
 
     if kw:
         question_list = question_list.filter(

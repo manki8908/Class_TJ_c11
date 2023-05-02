@@ -135,8 +135,8 @@
             context = {"year": year, "article_list": a_list}
             return render(request, "news/year_archive.html", context)
         ```
-        * request(요청된 앱 URL)
-        * render(요청된객체,템플릿,선택적인수)
+        * render(request요청된객체,템플릿,선택적인수)
+                * request(??)
 
 ---
 
